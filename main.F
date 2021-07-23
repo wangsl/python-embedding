@@ -16,8 +16,6 @@
       End
       
 
-
-      
       Program Main
       Implicit None
       Integer N
@@ -31,7 +29,7 @@
       
       Call PrintX(N, X)
 
-      Do J = 1, 100000
+      Do J = 1, 10
          Write(6, *)
          Write(6, *) 'Loop: ', J
          Call RunPy('test.py', 'my_test', X, N)

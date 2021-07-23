@@ -26,10 +26,8 @@ if __name__ == "__main__" :
     x = np.arange(10, dtype=numpy.float64)
     print(x)
     
-    mytest(x)
+    my_test(x)
 
     print(x)
 
-    a = torch.from_numpy(x)
-    print(a)
 
