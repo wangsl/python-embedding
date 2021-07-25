@@ -6,7 +6,7 @@ import torch
 import numpy
 
 def my_test(x) :
-    print(' From Python test: ', x.size)
+    print(' From Python test: {}'.format(x.size))
     for i in range(x.size) :
         x[i] += 1.0
 
@@ -19,7 +19,7 @@ def my_test(x) :
     if torch.cuda.is_available() :
         b_dev = b.cuda()
         print(b_dev)
-    
+
 if __name__ == "__main__" :
     import numpy as np
 

@@ -1,12 +1,12 @@
 
 
-      SubRoutine PrintX(N, X)
+      SubRoutine PrintX(X, Nx)
       Implicit None
-      Integer N
+      Integer Nx
       Real*8 X(*)
       Integer I
 
-      Do I = 1, N
+      Do I = 1, Nx
          Write(6, *) I, X(I)
       EndDo
 
@@ -18,22 +18,22 @@
 
       Program Main
       Implicit None
-      Integer N
-      Parameter(N = 15)
-      Real*8 X(N)
-      Integer I, J
+      Integer Nx
+      Parameter(Nx = 15)
+      Real*8 X(Nx)
+      Integer I
 
-      Do I = 1, N
+      Do I = 1, Nx
          X(I) = DBLE(I)
       EndDo
       
-      Call PrintX(N, X)
+      Call PrintX(X, Nx)
 
-      Do J = 1, 10
+      Do I = 1, 10
          Write(6, *)
-         Write(6, *) 'Loop: ', J
-         Call RunPy('test.py', 'my_test', X, N)
-         Call PrintX(n, x)
+         Write(6, *) 'Loop: ', I
+         Call RunPy('test.py', 'my_test', X, Nx)
+         Call PrintX(X, Nx)
       EndDo
 
       Call PyFinalize
