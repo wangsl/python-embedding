@@ -21,8 +21,9 @@ def my_test(x) :
         print(b_dev)
 
     my_test2()
-    
 
+    sys.stdout.flush()
+    
 def my_test2() :
     print(' **** From my_test2 ****')
     return

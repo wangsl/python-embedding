@@ -5,6 +5,7 @@
 #include <Python.h>
 #include <numpy/ndarrayobject.h>
 
+// https://docs.python.org/3/extending/embedding.html
 // https://github.com/dusty-nv/jetson-utils/issues/44
 // export PYTHONPATH=.:$PYTHONPATH
 
