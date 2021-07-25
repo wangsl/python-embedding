@@ -13,10 +13,10 @@
 static PyObject *py_module = 0;
 static PyObject *py_function = 0;
 
-inline void *init_numpy()
+inline int init_numpy()
 {
   if(!PyArray_API) import_array();
-  return NULL;
+  return PyArray_API ? 1 : 0;
 }
 
 static void py_test(const char *py_script_, const char *py_function_,
@@ -26,7 +26,7 @@ static void py_test(const char *py_script_, const char *py_function_,
 
   assert(Py_IsInitialized());
   
-  init_numpy();
+  assert(init_numpy());
   
   if(!py_module) {
     PyObject *py_script = PyUnicode_DecodeFSDefault(py_script_);

@@ -20,7 +20,14 @@ def my_test(x) :
         b_dev = b.cuda()
         print(b_dev)
 
-if __name__ == "__main__" :
+    my_test2()
+    
+
+def my_test2() :
+    print(' **** From my_test2 ****')
+    return
+
+if __name__ == '__main__' :
     import numpy as np
 
     x = np.arange(10, dtype=numpy.float64)
