@@ -5,7 +5,7 @@ from math import sin
 import torch
 import numpy
 
-def my_test(x) :
+def my_test(x, y) :
     print(' From Python test: {}'.format(x.size))
     for i in range(x.size) :
         x[i] += 1.0
@@ -20,7 +20,10 @@ def my_test(x) :
         b_dev = b.cuda()
         print(b_dev)
 
-    my_test2()
+    for i in range(y.size) :
+        y[i] = 2*numpy.float64(b[i]) + 0.1
+
+    print(y)
 
     sys.stdout.flush()
     
@@ -33,8 +36,11 @@ if __name__ == '__main__' :
 
     x = np.arange(10, dtype=numpy.float64)
     print(x)
+
+    y = np.arange(10, dtype=numpy.float64)
+    print(y)
     
-    my_test(x)
+    my_test(x, y)
 
     print(x)
 

@@ -21,7 +21,8 @@ inline int init_numpy()
 }
 
 static void py_test(const char *py_script_, const char *py_function_,
-		    double *x, const int &nx)
+		    double *x, const int &nx,
+		    double *y, const int &ny)
 {
   if(!Py_IsInitialized()) Py_Initialize();
 
@@ -44,13 +45,16 @@ static void py_test(const char *py_script_, const char *py_function_,
     assert(PyCallable_Check(py_function));
   }
 
-  const npy_intp dim1 [] = { nx };
-  PyObject *x_py = PyArray_SimpleNewFromData(1, dim1, NPY_DOUBLE, x);
+  const npy_intp dim_x [] = { nx };
+  PyObject *x_py = PyArray_SimpleNewFromData(1, dim_x, NPY_DOUBLE, x);
 
-  assert(PyObject_CallFunctionObjArgs(py_function, x_py, NULL));
+  const npy_intp dim_y [] = { ny };
+  PyObject *y_py = PyArray_SimpleNewFromData(1, dim_y, NPY_DOUBLE, y);
+
+  assert(PyObject_CallFunctionObjArgs(py_function, x_py, y_py, NULL));
   
-  Py_DECREF(x_py);
-  x_py = 0;
+  Py_DECREF(x_py); x_py = 0;
+  Py_DECREF(y_py); y_py = 0;
 
   // PyRun_SimpleString("import sys; sys.stdout.flush()");
   
@@ -68,7 +72,8 @@ static void py_finalize()
 // Fortran interface: PyTest
 extern "C" void FORT(pytest)(const char *py_script, const int &len_py_script,
 			     const char *py_function, const int &len_py_function,
-			     double *x, const int &nx)
+			     double *x, const int &nx,
+			     double *y, const int &ny)
 {
   char *py_script_ = new char [len_py_script+1];
   assert(py_script);
@@ -80,7 +85,7 @@ extern "C" void FORT(pytest)(const char *py_script, const int &len_py_script,
   memcpy(py_function_, py_function, len_py_function*sizeof(char));
   py_function_[len_py_function] = '\0';
 
-  py_test(py_script_, py_function_, x, nx);
+  py_test(py_script_, py_function_, x, nx, y, ny);
 
   if(py_script_) { delete [] py_script_; py_script_ = 0; }
   if(py_function_) { delete [] py_function_; py_function_ = 0; }
