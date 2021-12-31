@@ -21,8 +21,8 @@ inline int init_numpy()
 }
 
 static void py_test(const char *py_script_, const char *py_function_,
-		    double *x, const int &nx,
-		    double *y, const int &ny)
+                    double *x, const int &nx,
+                    double *y, const int &ny)
 {
   if(!Py_IsInitialized()) Py_Initialize();
 
@@ -71,9 +71,9 @@ static void py_finalize()
 
 // Fortran interface: PyTest
 extern "C" void FORT(pytest)(const char *py_script, const int &len_py_script,
-			     const char *py_function, const int &len_py_function,
-			     double *x, const int &nx,
-			     double *y, const int &ny)
+                            const char *py_function, const int &len_py_function,
+                            double *x, const int &nx,
+                            double *y, const int &ny)
 {
   char *py_script_ = new char [len_py_script+1];
   assert(py_script);
