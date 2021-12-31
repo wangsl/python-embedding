@@ -6,42 +6,42 @@ import torch
 import numpy
 
 def my_test(x, y) :
-    print(' From Python test: {}'.format(x.size))
-    for i in range(x.size) :
-        x[i] += 1.0
+  print(f' From Python test: {x.size}') #.format(x.size))
+  for i in range(x.size) :
+    x[i] += 1.0
 
-    a = torch.from_numpy(x)
-    print(a)
+  a = torch.from_numpy(x)
+  print(a)
 
-    b = torch.from_numpy(x.astype(numpy.float32))
-    print(b)
+  b = torch.from_numpy(x.astype(numpy.float32))
+  print(b)
 
-    if torch.cuda.is_available() :
-        b_dev = b.cuda()
-        print(b_dev)
+  if torch.cuda.is_available() :
+    b_dev = b.cuda()
+    print(b_dev)
 
-    for i in range(y.size) :
-        y[i] = 2*numpy.float64(b[i]) + 0.1
+  for i in range(y.size) :
+    y[i] = 0.2*numpy.float64(b[i]) + 0.1
 
-    print(y)
+  print(y)
 
-    sys.stdout.flush()
+  sys.stdout.flush()
     
 def my_test2() :
-    print(' **** From my_test2 ****')
-    return
+  print(' **** From my_test2 ****')
+  return
 
 if __name__ == '__main__' :
-    import numpy as np
+  import numpy as np
 
-    x = np.arange(10, dtype=numpy.float64)
-    print(x)
+  x = np.arange(10, dtype=numpy.float64)
+  print(x)
 
-    y = np.arange(10, dtype=numpy.float64)
-    print(y)
-    
-    my_test(x, y)
+  y = np.arange(10, dtype=numpy.float64)
+  print(y)
+  
+  my_test(x, y)
 
-    print(x)
+  print(x)
 
 
